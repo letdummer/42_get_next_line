@@ -15,6 +15,7 @@ char	*ft_strdup(const char *str1);
 char	*ft_strjoin(char const *s1, char const *s2);
 void	*ft_calloc(size_t nitems, size_t size);
 size_t	ft_strlen(const char *str);
+char	*ft_strchr(const char *str, int c);
 
 
 
