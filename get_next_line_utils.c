@@ -28,13 +28,12 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		return (NULL);
 	str = (char *)malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
 	if (str == NULL)
-		return (NULL);
+		return ("aaa");
 	i = 0;
 	j = 0;
 	while (i < ft_strlen(s1))
 	{
 		str[i] = s1[i];
-		i++;
 	}
 	while (j < ft_strlen(s2))
 	{

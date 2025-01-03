@@ -9,8 +9,8 @@
   //int   count = 0;
   char  *next_line;
 
-  //fd = open("../tests/empty.txt", O_RDONLY);
   fd = open("example.txt", O_RDONLY);
+  //fd = open("../tests/empty.txt", O_RDONLY);
   //fd = open("../tests/long_text.txt", O_RDONLY);
   //fd = open("../tests/newline_terminator.txt", O_RDONLY);
   //fd = open("../tests/one_char.txt", O_RDONLY);
@@ -28,35 +28,52 @@
   close(fd);
   return (0);
 } */
-
+// ________________________________________________
 int	main(void)
 {
 	char	*line;
 	int		i;
-	int		fd1;
-	//int		fd2;
-	//int		fd3;
-	fd1 = open("tests/example.txt", O_RDONLY);
-	//fd2 = open("tests/empty.txt", O_RDONLY);
-	//fd1 = open("tests/long_text.txt", O_RDONLY);
+	int		fd;
+
 	i = 1;
-	while (i < 7)
+	
+	//fd = open("tests/empty.txt", O_RDONLY);
+	//fd = open("long_text.txt", O_RDONLY);
+	
+	fd = open("example.txt", O_RDONLY);
+    printf("opening document\n");
+    printf("before entering the loop\n");
+    	printf("__________________________\n");
+		line = get_next_line(fd);
+	while (line != NULL)
 	{
-    printf("__________\n");
-		line = get_next_line(fd1);
 		printf("line [%02d]: %s", i, line);
+    	//printf("\tnow will free the line\n");
 		free(line);
-/* 		line = get_next_line(fd2);
-		printf("line [%02d]: %s", i, line);
-		free(line);
-		line = get_next_line(fd3);
-		printf("line [%02d]: %s", i, line);
-		free(line); */
 		i++;
-    printf("\n");
+    	printf("\n");
+    	printf("\n");
+		line = get_next_line(fd);
 	}
-	close(fd1);
-	//close(fd2);
-	//close(fd3);
+    	printf("__________________________\n");
+    printf("out the loop\n");
+	close(fd);
 	return (0);
 }
+
+
+/* int	main()
+{
+	int	fd = open("file.txt", O_RDONLY);
+	char	*line;
+	
+	
+	while ((line = get_next_line(fd)) != NULL)
+	{
+		printf ("%s", line);
+		free(line);
+	}
+    printf("out the loop\n");
+	close (fd);
+	return (0);
+} */

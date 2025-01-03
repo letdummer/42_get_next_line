@@ -5,6 +5,8 @@
 #include <fcntl.h>
 
 #include <unistd.h>	//COMENTAR
+#include <stdio.h> //COMENTAR
+
 
 # ifndef BUFFER_SIZE
 # define BUFFER_SIZE 42
