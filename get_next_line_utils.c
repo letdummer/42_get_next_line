@@ -5,7 +5,11 @@ char	*ft_strchr(const char *str, int c)
 	char	ch;
 
 	ch = (char)c;
-	while (*str != '\0' )
+	if (!str)
+		return (NULL);
+	if (ch == '\0')
+		return ((char *) str);
+	while (*str != '\0')
 	{
 		if (*str == ch)
 		{
@@ -13,39 +17,35 @@ char	*ft_strchr(const char *str, int c)
 		}
 		str++;	
 	}
-	if (ch == '\0')
-		return ((char *) str);
 	return (NULL);
 }
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(char *s1, char const *s2)
 {
-	char		*str;
+	char		*new_str;
 	size_t		i;
 	size_t		j;
 
 	if (s1 == NULL || s2 == NULL)
 		return (NULL);
-	str = (char *)malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
-	if (str == NULL)
-		return ("aaa");
-	i = 0;
-	j = 0;
-	while (i < ft_strlen(s1))
+	new_str = (char *)malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
+	if (new_str == NULL)
+		return (NULL);
+	i = -1;
+	j = -1;
+	while (s1[++i])
 	{
-		str[i] = s1[i];
+		new_str[i] = s1[i];
 	}
-	while (j < ft_strlen(s2))
+	while (s2[++j])
 	{
-		str[i] = s2[j];
-		i++;
-		j++;
+		new_str[i + j] = s2[j];
 	}
-	str[i] = '\0';
-	return (str);
+	new_str[i + j] = '\0';
+	return (new_str);
 }
 
-char	*ft_strdup(const char *str1)
+/* char	*ft_strdup(const char *str1)
 {
 	char	*new_string;
 	size_t	i;
@@ -61,7 +61,7 @@ char	*ft_strdup(const char *str1)
 	}
 	new_string[i] = '\0';
 	return (new_string);
-}
+} */
 
 void	*ft_calloc(size_t nitems, size_t size)
 {
@@ -74,10 +74,10 @@ void	*ft_calloc(size_t nitems, size_t size)
 		return (NULL);
 	while (i < (nitems * size))
 	{
-		ptr[i] = 0;
+		ptr[i] = '\0';
 		i++;
 	}
-	return (ptr);
+	return ((void *)ptr);
 }
 
 size_t	ft_strlen(const char *str)
@@ -85,7 +85,7 @@ size_t	ft_strlen(const char *str)
 	int	i;
 
 	i = 0;
-	while (str[i] != '\0')
+	while (str[i])
 		i++;
 	return (i);
 }

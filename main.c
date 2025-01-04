@@ -28,43 +28,46 @@
   close(fd);
   return (0);
 } */
+
+
 // ________________________________________________
+
+
 int	main(void)
 {
 	char	*line;
-	int		i;
 	int		fd;
 
-	i = 1;
-	
-	//fd = open("tests/empty.txt", O_RDONLY);
-	//fd = open("long_text.txt", O_RDONLY);
-	
 	fd = open("example.txt", O_RDONLY);
-    printf("opening document\n");
-    printf("before entering the loop\n");
-    	printf("__________________________\n");
-		line = get_next_line(fd);
+	if (fd < 0)
+	{
+		printf("Error opening file");
+		return 1; 
+	}
+
+	
+  //  printf("opening document\n");
+    //printf("__________________________\n");
+	line = get_next_line(fd);
 	while (line != NULL)
 	{
-		printf("line [%02d]: %s", i, line);
-    	//printf("\tnow will free the line\n");
+		printf("line: %s", line);
 		free(line);
-		i++;
-    	printf("\n");
-    	printf("\n");
 		line = get_next_line(fd);
 	}
-    	printf("__________________________\n");
-    printf("out the loop\n");
+  //  printf("__________________________\n");
+    //printf("out the loop\n");
 	close(fd);
 	return (0);
 }
 
 
-/* int	main()
+
+
+/* 
+int	main()
 {
-	int	fd = open("file.txt", O_RDONLY);
+	int	fd = open("example.txt", O_RDONLY);
 	char	*line;
 	
 	
