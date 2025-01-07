@@ -7,9 +7,7 @@ char	*ft_strchr(const char *str, int c)
 	ch = (char)c;
 	if (!str)
 		return (NULL);
-	if (ch == '\0')
-		return ((char *) str);
-	while (*str != '\0')
+	while (*str)
 	{
 		if (*str == ch)
 		{
@@ -17,10 +15,12 @@ char	*ft_strchr(const char *str, int c)
 		}
 		str++;	
 	}
+	if (ch == *str)
+		return ((char *)str);
 	return (NULL);
 }
 
-char	*ft_strjoin(char *s1, char const *s2)
+char	*ft_strjoin(char *s1, char *s2)
 {
 	char		*new_str;
 	size_t		i;
@@ -31,17 +31,21 @@ char	*ft_strjoin(char *s1, char const *s2)
 	new_str = (char *)malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
 	if (new_str == NULL)
 		return (NULL);
-	i = -1;
-	j = -1;
-	while (s1[++i])
+	i = 0;
+	j = 0;
+	while (s1 && s1[i])
 	{
 		new_str[i] = s1[i];
+		i++;
 	}
-	while (s2[++j])
+	while (s2 && s2[j])
 	{
-		new_str[i + j] = s2[j];
+		new_str[i] = s2[j];
+		i++;
+		j++;
 	}
-	new_str[i + j] = '\0';
+	free(s1);
+	//new_str[i + j] = '\0';
 	return (new_str);
 }
 
@@ -77,7 +81,7 @@ void	*ft_calloc(size_t nitems, size_t size)
 		ptr[i] = '\0';
 		i++;
 	}
-	return ((void *)ptr);
+	return (ptr);
 }
 
 size_t	ft_strlen(const char *str)
