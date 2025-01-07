@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <unistd.h>
 #include <fcntl.h>
 
 #include "get_next_line.h"
@@ -8,17 +9,18 @@
 
 int	main(void)
 {
-	char	*line;
 	int		fd;
+	char	*line;
 
+	//line = NULL;
 	fd = open("example.txt", O_RDONLY);
-	/* if (fd < 0)
+	printf("opening file\n");
+	if (fd < 0)
 	{
 		printf("Error opening file");
 		return 1; 
-	} */
+	}
 	
-	printf(" opening file\n");
 	line = get_next_line(fd);
 	while (line)
 	{
