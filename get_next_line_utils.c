@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ldummer- <ldummer-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/08 14:35:33 by ldummer-          #+#    #+#             */
+/*   Updated: 2025/01/08 14:50:05 by ldummer-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "get_next_line.h"
 
 char	*ft_strchr(const char *str, int c)
@@ -13,7 +25,7 @@ char	*ft_strchr(const char *str, int c)
 		{
 			return ((char *)str);
 		}
-		str++;	
+		str++;
 	}
 	if (ch == '\0')
 		return ((char *)str);
@@ -28,21 +40,17 @@ char	*ft_strjoin(char *s1, char *s2)
 
 	if (s1 == NULL || s2 == NULL)
 		return (NULL);
-
- /*  if (!s1 && !s2) return NULL;
-    if (!s1) return ft_strdup(s2);
-    if (!s2) return ft_strdup(s1); */
-	new_str = (char *)malloc(((ft_strlen(s1) + ft_strlen(s2)) + 1) * sizeof(char));
+	new_str = (char *)malloc((ft_strlen(s1) + ft_strlen(s2)) + 1);
 	if (new_str == NULL)
 		return (free(new_str), NULL);
 	i = 0;
 	j = 0;
-	while (s1)
+	while (s1[i])
 	{
 		new_str[i] = s1[i];
 		i++;
 	}
-	while (s2)
+	while (s2[j])
 	{
 		new_str[i] = s2[j];
 		i++;
@@ -95,5 +103,4 @@ char	*ft_strdup(const char *str1)
 	}
 	new_string[i] = '\0';
 	return (new_string);
-} 
-
+}

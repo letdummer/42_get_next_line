@@ -1,16 +1,25 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ldummer- <ldummer-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/08 14:35:42 by ldummer-          #+#    #+#             */
+/*   Updated: 2025/01/08 14:57:59 by ldummer-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 
-#include <stdlib.h>
-#include <fcntl.h>
-#include <unistd.h> //for read function
+# include <stdlib.h>
+# include <fcntl.h>
+# include <unistd.h> //for read function
 
-#include <stdio.h> //COMENTAR
-
-
-#ifndef BUFFER_SIZE
-# define BUFFER_SIZE 3
-#endif
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 42
+# endif
 
 // main functions
 char	*get_next_line(int fd);
@@ -25,7 +34,5 @@ void	*ft_calloc(size_t nitems, size_t size);
 size_t	ft_strlen(const char *str);
 char	*ft_strchr(const char *str, int c);
 char	*ft_strdup(const char *str1);
-
-
 
 #endif
