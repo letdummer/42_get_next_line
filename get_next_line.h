@@ -6,7 +6,7 @@
 /*   By: ldummer- <ldummer-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 14:35:42 by ldummer-          #+#    #+#             */
-/*   Updated: 2025/01/08 14:57:59 by ldummer-         ###   ########.fr       */
+/*   Updated: 2025/01/09 12:34:50 by ldummer-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define GET_NEXT_LINE_H
 
 # include <stdlib.h>
-# include <fcntl.h>
 # include <unistd.h> //for read function
 
 # ifndef BUFFER_SIZE
@@ -32,7 +31,8 @@ char	*clean_buffer(char *tmp);
 char	*ft_strjoin(char *s1, char *s2);
 void	*ft_calloc(size_t nitems, size_t size);
 size_t	ft_strlen(const char *str);
-char	*ft_strchr(const char *str, int c);
 char	*ft_strdup(const char *str1);
+int	find_line(char *stash);
+
 
 #endif
