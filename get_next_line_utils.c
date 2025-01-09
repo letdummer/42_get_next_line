@@ -6,32 +6,14 @@
 /*   By: ldummer- <ldummer-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 14:35:33 by ldummer-          #+#    #+#             */
-/*   Updated: 2025/01/08 14:50:05 by ldummer-         ###   ########.fr       */
+/*   Updated: 2025/01/09 14:07:36 by ldummer-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*ft_strchr(const char *str, int c)
-{
-	char	ch;
-
-	ch = (char)c;
-	if (!str)
-		return (NULL);
-	while (*str)
-	{
-		if (*str == ch)
-		{
-			return ((char *)str);
-		}
-		str++;
-	}
-	if (ch == '\0')
-		return ((char *)str);
-	return (NULL);
-}
-
+// Helper function that joins two strings
+// Returns the new string
 char	*ft_strjoin(char *s1, char *s2)
 {
 	char		*new_str;
@@ -60,6 +42,7 @@ char	*ft_strjoin(char *s1, char *s2)
 	return (new_str);
 }
 
+// Helper function that allocates memory and initializes it to zero
 void	*ft_calloc(size_t nitems, size_t size)
 {
 	unsigned char	*ptr;
@@ -77,6 +60,7 @@ void	*ft_calloc(size_t nitems, size_t size)
 	return (ptr);
 }
 
+// Helper function that calculates the length of a string
 size_t	ft_strlen(const char *str)
 {
 	int	i;
@@ -87,6 +71,8 @@ size_t	ft_strlen(const char *str)
 	return (i);
 }
 
+// Helper function that duplicates a string
+// Returns the new string
 char	*ft_strdup(const char *str1)
 {
 	char	*new_string;

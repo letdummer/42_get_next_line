@@ -6,13 +6,12 @@
 /*   By: ldummer- <ldummer-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 14:35:47 by ldummer-          #+#    #+#             */
-/*   Updated: 2025/01/08 15:02:23 by ldummer-         ###   ########.fr       */
+/*   Updated: 2025/01/09 14:13:48 by ldummer-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
-#include <unistd.h>
-#include <fcntl.h>
+#include <fcntl.h> //for open function
 
 #include "get_next_line.h"
 
@@ -25,11 +24,11 @@ int	main(void)
 	i = 1;
 	line = NULL;
 	fd = open("tests/long_text.txt", O_RDONLY);
-	printf("opening file\n");
+	printf("\t\tOpening file\n\n");
 	if (fd < 0)
 	{
 		printf("Error opening file");
-		return (1);
+		return (-1);
 	}
 	line = get_next_line(fd);
 	while (line)
@@ -41,6 +40,7 @@ int	main(void)
 	close(fd);
 	return (0);
 }
+
 /* 
 int main (int argc, char **argv)
 {
@@ -51,7 +51,10 @@ int main (int argc, char **argv)
 	char *line;
 
 	if ((fd = open(argv[1], O_RDONLY)) == -1)
-		return (-1);
+	{
+		printf("Error opening file");
+		return (1);
+	}
 	
 	line = get_next_line(fd);
 	while (line)

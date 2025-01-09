@@ -6,12 +6,15 @@
 /*   By: ldummer- <ldummer-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 14:35:25 by ldummer-          #+#    #+#             */
-/*   Updated: 2025/01/08 14:39:32 by ldummer-         ###   ########.fr       */
+/*   Updated: 2025/01/09 14:25:04 by ldummer-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
+// Main function that coordinates operations  
+// Uses a static buffer to store data between calls  
+// Reads the file, returns the next line, and updates the buffer  
 char	*get_next_line(int fd)
 {
 	static char	*buffer;
@@ -29,94 +32,102 @@ char	*get_next_line(int fd)
 	return (line);
 }
 
-static int	find_line(char *stash)
+// Iterates through the string looking for a line break  
+// Returns 1 if found, 0 otherwise
+int	find_line(char *buffer)
 {
 	int	i;
 
 	i = 0;
-	if (!stash)
+	if (!buffer)
 		return (0);
-	while (stash[i] != '\0')
+	while (buffer[i] != '\0')
 	{
-		if (stash[i] == '\n')
+		if (buffer[i] == '\n')
 			return (1);
 		i++;
 	}
 	return (0);
 }
 
-char	*read_file(int fd, char *tmp)
+// Reads data from the file in blocks, with a dynamic size defined by BUFFER_SIZE  
+// Searches for a line break or the end of the file  
+char	*read_file(int fd, char *buffer)
 {
 	ssize_t		bytes;
-	char		*buffer;
+	char		*read_chunk;
 	char		*new_buffer;
 
-	buffer = ft_calloc((BUFFER_SIZE + 1), sizeof(char));
-	if (!buffer)
+	read_chunk = ft_calloc((BUFFER_SIZE + 1), sizeof(char));
+	if (!read_chunk)
 		return (NULL);
+	if (!buffer)
+		buffer = ft_strdup("");
 	bytes = 1;
-	if (!tmp)
-		tmp = ft_strdup("");
-	while (find_line(tmp) == 0 && bytes > 0)
+	while (find_line(buffer) == 0 && bytes > 0)
 	{
-		bytes = read(fd, buffer, BUFFER_SIZE);
+		bytes = read(fd, read_chunk, BUFFER_SIZE);
 		if (bytes < 0)
-			return (free(buffer), free(tmp), NULL);
-		buffer[bytes] = '\0';
-		new_buffer = ft_strjoin(tmp, buffer);
-		free(tmp);
-		tmp = new_buffer;
+			return (free(read_chunk), free(buffer), NULL);
+		read_chunk[bytes] = '\0';
+		new_buffer = ft_strjoin(buffer, read_chunk);
+		free(buffer);
+		buffer = new_buffer;
 	}
-	free(buffer);
-	return (tmp);
+	free(read_chunk);
+	return (buffer);
 }
 
-char	*extract_line(char *tmp)
+// Helper function that extracts the next line from the buffer  
+// Returns the found line
+char	*extract_line(char *buffer)
 {
 	int		i;
 	char	*line;
 
 	i = 0;
-	if (!tmp || !*tmp)
+	if (!buffer || !*buffer)
 		return (NULL);
-	while (tmp[i] && tmp[i] != '\n')
+	while (buffer[i] && buffer[i] != '\n')
 		i++;
 	line = ft_calloc((i + 2), sizeof(char));
 	if (!line)
 		return (NULL);
 	i = 0;
-	while (tmp[i] && tmp[i] != '\n')
+	while (buffer[i] && buffer[i] != '\n')
 	{
-		line[i] = tmp[i];
+		line[i] = buffer[i];
 		i++;
 	}
-	if (tmp[i] == '\n')
+	if (buffer[i] == '\n')
 		line[i++] = '\n';
 	line[i] = '\0';
 	return (line);
 }
 
-char	*clean_buffer(char *tmp)
+// Helper function that removes the extracted line from the buffer  
+// Returns the updated buffer
+char	*clean_buffer(char *buffer)
 {
 	int		i;
 	int		j;
-	char	*new_tmp;
+	char	*new_buffer;
 
 	i = 0;
 	j = 0;
-	if (!tmp)
+	if (!buffer)
 		return (NULL);
-	while (tmp[i] && tmp[i] != '\n')
+	while (buffer[i] && buffer[i] != '\n')
 		i++;
-	if (!tmp[i])
-		return (free(tmp), NULL);
-	new_tmp = ft_calloc((ft_strlen(tmp) - i), sizeof(char));
-	if (!new_tmp)
+	if (!buffer[i])
+		return (free(buffer), NULL);
+	new_buffer = ft_calloc((ft_strlen(buffer) - i), sizeof(char));
+	if (!new_buffer)
 		return (NULL);
 	i++;
-	while (tmp[i])
-		new_tmp[j++] = tmp[i++];
-	new_tmp[j] = '\0';
-	free(tmp);
-	return (new_tmp);
+	while (buffer[i])
+		new_buffer[j++] = buffer[i++];
+	new_buffer[j] = '\0';
+	free(buffer);
+	return (new_buffer);
 }
