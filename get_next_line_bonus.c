@@ -1,34 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ldummer- <ldummer-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 14:35:25 by ldummer-          #+#    #+#             */
-/*   Updated: 2025/01/09 15:49:42 by ldummer-         ###   ########.fr       */
+/*   Updated: 2025/01/11 13:11:53 by ldummer-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 // Main function that coordinates operations  
 // Uses a static buffer to store data between calls  
 // Reads the file, returns the next line, and updates the buffer  
 char	*get_next_line(int fd)
 {
-	static char	*buffer;
+	static char	*buffer[FD_SIZE];
 	char		*line;
 
-	if (fd < 0 || BUFFER_SIZE <= 0)
+	if (fd < 0 || BUFFER_SIZE <= 0 || fd >= FD_SIZE)
 		return (NULL);
-	if (!buffer)
-		buffer = ft_strdup("");
-	buffer = read_file(fd, buffer);
-	if (!buffer)
+	if (!buffer[fd])
+		buffer[fd] = ft_strdup("");
+	buffer[fd] = read_file(fd, buffer[fd]);
+	if (!buffer[fd])
 		return (NULL);
-	line = extract_line(buffer);
-	buffer = clean_buffer(buffer);
+	line = extract_line(buffer[fd]);
+	buffer[fd] = clean_buffer(buffer[fd]);
 	return (line);
 }
 

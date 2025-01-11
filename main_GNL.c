@@ -6,21 +6,22 @@
 /*   By: ldummer- <ldummer-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 14:35:47 by ldummer-          #+#    #+#             */
-/*   Updated: 2025/01/09 14:13:48 by ldummer-         ###   ########.fr       */
+/*   Updated: 2025/01/09 15:31:56 by ldummer-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "get_next_line.h"
 
 #include <stdio.h>
 #include <fcntl.h> //for open function
 
-#include "get_next_line.h"
 
 int	main(void)
 {
 	int		fd;
 	char	*line;
-	int i;
-	
+	int		i;
+
 	i = 1;
 	line = NULL;
 	fd = open("tests/long_text.txt", O_RDONLY);
