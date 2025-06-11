@@ -6,7 +6,7 @@
 /*   By: ldummer- <ldummer-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 14:35:33 by ldummer-          #+#    #+#             */
-/*   Updated: 2025/01/09 15:58:38 by ldummer-         ###   ########.fr       */
+/*   Updated: 2025/06/11 09:41:15 by ldummer-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 // Helper function that joins two strings
 // Returns the new string
-char	*ft_strjoin(char *s1, char *s2)
+char	*ft_strjoin_gnl(char *s1, char *s2)
 {
 	char		*new_str;
 	size_t		i;
@@ -22,7 +22,7 @@ char	*ft_strjoin(char *s1, char *s2)
 
 	if (s1 == NULL || s2 == NULL)
 		return (NULL);
-	new_str = (char *)malloc((ft_strlen(s1) + ft_strlen(s2)) + 1);
+	new_str = (char *)malloc((ft_strlen_gnl(s1) + ft_strlen_gnl(s2)) + 1);
 	if (new_str == NULL)
 		return (free(new_str), NULL);
 	i = 0;
@@ -43,7 +43,7 @@ char	*ft_strjoin(char *s1, char *s2)
 }
 
 // Helper function that allocates memory and initializes it to zero
-void	*ft_calloc(size_t nitems, size_t size)
+void	*ft_calloc_gnl(size_t nitems, size_t size)
 {
 	unsigned char	*ptr;
 	size_t			i;
@@ -61,7 +61,7 @@ void	*ft_calloc(size_t nitems, size_t size)
 }
 
 // Helper function that calculates the length of a string
-size_t	ft_strlen(const char *str)
+size_t	ft_strlen_gnl(const char *str)
 {
 	int	i;
 
@@ -73,12 +73,12 @@ size_t	ft_strlen(const char *str)
 
 // Helper function that duplicates a string
 // Returns the new string
-char	*ft_strdup(const char *str1)
+char	*ft_strdup_gnl(const char *str1)
 {
 	char	*new_string;
 	size_t	i;
 
-	new_string = (char *) malloc (ft_strlen(str1) + 1);
+	new_string = (char *) malloc (ft_strlen_gnl(str1) + 1);
 	if (!new_string)
 		return (NULL);
 	i = 0;

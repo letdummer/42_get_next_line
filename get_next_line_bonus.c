@@ -6,7 +6,7 @@
 /*   By: ldummer- <ldummer-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 14:35:25 by ldummer-          #+#    #+#             */
-/*   Updated: 2025/01/11 13:11:53 by ldummer-         ###   ########.fr       */
+/*   Updated: 2025/06/11 09:41:15 by ldummer-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ char	*get_next_line(int fd)
 	if (fd < 0 || BUFFER_SIZE <= 0 || fd >= FD_SIZE)
 		return (NULL);
 	if (!buffer[fd])
-		buffer[fd] = ft_strdup("");
+		buffer[fd] = ft_strdup_gnl("");
 	buffer[fd] = read_file(fd, buffer[fd]);
 	if (!buffer[fd])
 		return (NULL);
@@ -59,11 +59,11 @@ char	*read_file(int fd, char *buffer)
 	char		*read_chunk;
 	char		*new_buffer;
 
-	read_chunk = ft_calloc((BUFFER_SIZE + 1), sizeof(char));
+	read_chunk = ft_calloc_gnl((BUFFER_SIZE + 1), sizeof(char));
 	if (!read_chunk)
 		return (NULL);
 	if (!buffer)
-		buffer = ft_strdup("");
+		buffer = ft_strdup_gnl("");
 	bytes = 1;
 	while (find_line(buffer) == 0 && bytes > 0)
 	{
@@ -71,7 +71,7 @@ char	*read_file(int fd, char *buffer)
 		if (bytes < 0)
 			return (free(read_chunk), free(buffer), NULL);
 		read_chunk[bytes] = '\0';
-		new_buffer = ft_strjoin(buffer, read_chunk);
+		new_buffer = ft_strjoin_gnl(buffer, read_chunk);
 		free(buffer);
 		buffer = new_buffer;
 	}
@@ -91,7 +91,7 @@ char	*extract_line(char *buffer)
 		return (NULL);
 	while (buffer[i] && buffer[i] != '\n')
 		i++;
-	line = ft_calloc((i + 2), sizeof(char));
+	line = ft_calloc_gnl((i + 2), sizeof(char));
 	if (!line)
 		return (NULL);
 	i = 0;
@@ -122,7 +122,7 @@ char	*clean_buffer(char *buffer)
 		i++;
 	if (!buffer[i])
 		return (free(buffer), NULL);
-	new_buffer = ft_calloc((ft_strlen(buffer) - i), sizeof(char));
+	new_buffer = ft_calloc_gnl((ft_strlen_gnl(buffer) - i), sizeof(char));
 	if (!new_buffer)
 		return (NULL);
 	i++;

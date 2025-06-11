@@ -6,7 +6,7 @@
 /*   By: ldummer- <ldummer-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 14:35:42 by ldummer-          #+#    #+#             */
-/*   Updated: 2025/01/09 15:33:59 by ldummer-         ###   ########.fr       */
+/*   Updated: 2025/06/11 09:41:15 by ldummer-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,10 @@ char	*clean_buffer(char *tmp);
 
 // utility functions
 
-char	*ft_strjoin(char *s1, char *s2);
-void	*ft_calloc(size_t nitems, size_t size);
-size_t	ft_strlen(const char *str);
-char	*ft_strdup(const char *str1);
+char	*ft_strjoin_gnl(char *s1, char *s2);
+void	*ft_calloc_gnl(size_t nitems, size_t size);
+size_t	ft_strlen_gnl(const char *str);
+char	*ft_strdup_gnl(const char *str1);
 int		find_line(char *buffer);
 
 #endif
