@@ -23,8 +23,6 @@
 	- Must at least contain the rules **$(NAME), all, clean, fclean** and **re**
 
 
-Check the complete [SUBJECT](https://github.com/letdummer/42_get_next_line/blob/main/subject/en.subject.pdf) (version 12 - dez/2024).
-
 
 <!----------------------- !end! INTRODUCTION -----------------------> 
 <!----------------------- SUMMARY OF STEPS ----------------------->
